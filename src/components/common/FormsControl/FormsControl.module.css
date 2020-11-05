@@ -1,0 +1,14 @@
+.error input {
+    border: solid red 5px;
+}
+
+.error textarea {
+    border: solid red 5px;
+}
+.error span {
+    color: rgb(104, 9, 9);
+}
+.formSummaryError {
+    border: 3px red solid;
+    padding: 5px;
+}
