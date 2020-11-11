@@ -27,12 +27,11 @@ const profileReducer = (state = initialState, action) => {
                 message: action.newPostText,
                 likesCount: 0
             };
-            let stateCopy = {
+            return{
                 ...state,
                 posts:[...state.posts, newPost],
                 newPostText: ''
             }              
-            return stateCopy;
         }
         case SET_USER_PROFILE :{
             return{
@@ -90,19 +89,17 @@ export const getStatus = (userId) => async (dispatch) => {
              
     dispatch (setStatus(response.data))
 };
-export const updateStatus = (status) => (dispatch) => {
-    profileAPI.updateStatus(status).then(response => {
+export const updateStatus = (status) => async (dispatch) => {
+    let response = await profileAPI.updateStatus(status);
         if (response.data.resultCode === 0) {
             dispatch(setStatus(status))
         }
-    })
 };
-export const savePhoto = (file) => (dispatch) => {
-    profileAPI.savePhoto(file).then(response => {
+export const savePhoto = (file) => async (dispatch) => {
+    let response = await profileAPI.savePhoto(file);
         if (response.data.resultCode === 0) {
             dispatch(savePhotoSuccess(response.data.data.photos))
         }
-    })
 };
 export const saveProfile = (profile) => async (dispatch, getState) => {
     const userId = getState().auth.userId

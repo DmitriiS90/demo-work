@@ -2,11 +2,11 @@ import React from 'react';
 import styles from './Users.module.css';
 import { connect } from 'react-redux';
 import Users from './users.jsx';
-import { setCurrentPageAC, toggleFolowingProgressAC, getUsersThunkCreator, followThunk, unfollowThunk } from '../../redux/users-reducer';
+import { setCurrentPageAC, toggleFollowingProgressAC, getUsersThunkCreator, followThunk, unfollowThunk } from '../../redux/users-reducer';
 import Preloader from '../common/preloader/preloader';
 import { withAuthRedirect } from '../../hoc/withAuthRedirect';
 import { compose } from 'redux';
-import { getPageSize, getTotalUsersCount,getCurrentPage,getIsFetching,getFolowingInProgress, getUsers } from '../../redux/user-selectors';
+import { getPageSize, getTotalUsersCount,getCurrentPage,getIsFetching,getFollowingInProgress, getUsers } from '../../redux/user-selectors';
 
 
 
@@ -27,8 +27,8 @@ class UsersContainer extends React.Component {
                 onPageChanged={this.onPageChanged}
                 unfollow={this.props.unfollow}
                 follow={this.props.follow}
-                toggleFolowingProgress={this.props.toggleFolowingProgress}
-                folowingInProgress={this.props.folowingInProgress} />
+                toggleFollowingProgress={this.props.toggleFollowingProgress}
+                followingInProgress={this.props.followingInProgress} />
         </>
     }
 }
@@ -41,7 +41,7 @@ let mapStateToProps = (state) => {
         totalUsersCount: getTotalUsersCount(state),
         currentPage: getCurrentPage(state),
         isFetching: getIsFetching(state),
-        folowingInProgress: getFolowingInProgress(state)
+        followingInProgress: getFollowingInProgress(state)
     }
 }
 
@@ -52,7 +52,7 @@ export default compose (
         follow: followThunk,
         unfollow: unfollowThunk ,
         setCurrentPage: setCurrentPageAC, 
-        toggleFolowingProgress: toggleFolowingProgressAC,
+        toggleFollowingProgress: toggleFollowingProgressAC,
         getUsersThunk: getUsersThunkCreator
     }),             
 ) (UsersContainer)

@@ -4,7 +4,7 @@ import userPhoto from '../../assets/images/user2.jpg'
 import { NavLink } from 'react-router-dom';
 import { Button } from 'antd';
 
-let User = ({user, folowingInProgress, unfollow, follow, ...props}) => {
+let User = ({user, followingInProgress, unfollow, follow, ...props}) => {
     return ( 
         <div>
             {
@@ -17,11 +17,11 @@ let User = ({user, folowingInProgress, unfollow, follow, ...props}) => {
                             </div>
                             <div>
                                 {user.followed
-                                    ? <Button disabled={folowingInProgress.some(id => id === user.id)} onClick={() => {     
+                                    ? <Button disabled={followingInProgress.some(id => id === user.id)} onClick={() => {     
                                         unfollow(user.id)
                                     }} type="primary" ghost>unFOllOW</Button>
 
-                                    : <Button disabled={folowingInProgress.some(id => id === user.id)} onClick={() => {
+                                    : <Button disabled={followingInProgress.some(id => id === user.id)} onClick={() => {
                                         follow(user.id)
                                     }} type="primary" ghost>FOllOW</Button>}
                             </div>
