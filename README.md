@@ -8,7 +8,7 @@ React-router-dom,
 Redux,
 Redux form,
 Redux thunk,
-Reselect
+Reselect,
 Axios,
 classnames,
-React-test-renderer
+React-test-renderer.
