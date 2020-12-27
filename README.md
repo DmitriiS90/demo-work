@@ -1,5 +1,11 @@
 ### Проект сделанный по курсу It-incubator
-Социальная сеть с профайлами пользователей. 
+Социальная сеть с профайлами пользователей,
+
+### gh-pages:
+https://dmitriis90.github.io/demo-work,
+Гостевой вход:
+login: shegolev1990@yandex.ru,
+password: JavaScript
 
 ### Stack:
 
