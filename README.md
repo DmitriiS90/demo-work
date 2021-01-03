@@ -2,7 +2,7 @@
 Социальная сеть с профайлами пользователей,
 
 ### gh-pages:
-https://dmitriis90.github.io/demo-work,
+https://dmitriis90.github.io/social-network,
 Гостевой вход:
 login: shegolev1990@yandex.ru,
 password: JavaScript
