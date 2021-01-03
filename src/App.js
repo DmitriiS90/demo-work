@@ -16,6 +16,7 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import Preloader from './components/common/preloader/preloader';
 import { NavLink } from 'react-router-dom';
+import Chat from './components/Chat/Chat';
 
 import { Layout, Menu, Breadcrumb,Avatar, Row, Col } from 'antd';
 import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons';
@@ -52,22 +53,26 @@ class App extends React.Component {
                 </SubMenu>
                 <SubMenu key="sub2" icon={<UserOutlined />} title="Users">
                   <Menu.Item key="3"><NavLink to='/users'>Users</NavLink></Menu.Item>
+                  <Menu.Item key="4"><NavLink to='/chat'>Chat</NavLink></Menu.Item>
                 </SubMenu>
                 <SubMenu key="sub3" icon={<LaptopOutlined />} title="subnav">
-                  <Menu.Item key="4"><NavLink to='/news'>News</NavLink></Menu.Item>
-                  <Menu.Item key="5"><NavLink to='/music'>Music</NavLink></Menu.Item>
-                  <Menu.Item key="6"><NavLink to='/settings'>Settings</NavLink></Menu.Item>
+                  <Menu.Item key="5"><NavLink to='/news'>News</NavLink></Menu.Item>
+                  <Menu.Item key="6"><NavLink to='/music'>Music</NavLink></Menu.Item>
+                  <Menu.Item key="7"><NavLink to='/settings'>Settings</NavLink></Menu.Item>
                 </SubMenu>
               </Menu>
             </Sider>
             <Content style={{ padding: '0 24px', minHeight: 280 }}>
+
               <Route path='/profile/:userId?' render={() => <ProfileContainer />} />
               <Route path='/dialogs' render={() => <DialogsContainer />} />
               <Route path='/users' render={() => <UsersContainer />} />
               <Route path='/news' render={() => <News />} />
-              <Route path='/music' component={Music} />
-              <Route path='/settings' component={Settings} />
+              <Route path='/music' render={() => <Music />} />
+              <Route path='/settings' render={() => <Settings />} />
               <Route path='/login' render={() => <Login />} />
+              <Route path='/chat' render={() => <Chat />} />
+
             </Content>
           </Layout>
         </Content>
