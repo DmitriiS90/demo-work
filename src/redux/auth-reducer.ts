@@ -1,24 +1,17 @@
-//import { stopSubmit } from "redux-form";
-import { authAPI, securityAPI } from "../api/api";
+import { stopSubmit } from "redux-form"
+import { authAPI, securityAPI } from "../api/api"
 
-const SET_USER_DATA ='SET-USER-DATA';                             
-const GET_CAPTCHA_URL_SUCCESS ='GET-CAPTCHA-URL-SUCCESS';                             
+const SET_USER_DATA ='SET-USER-DATA'                             
+const GET_CAPTCHA_URL_SUCCESS ='GET-CAPTCHA-URL-SUCCESS'                             
 
-export type InitialStateType = {
-    id: number | null,                   
-    email: string | null,
-    login: string | null,
-    isAuth: boolean,
-    captchaUrl: string | null
-}
+export type InitialStateType = typeof initialState
 
-
-let initialState:InitialStateType = {  
-    id: null,                   
-    email: null,
-    login: null,
-    isAuth: false,
-    captchaUrl: null
+let initialState = {  
+    id: null as number | null,                   
+    email: null as string | null,
+    login: null as string | null,
+    isAuth: false as boolean,
+    captchaUrl: null as string | null
 }
 
 
@@ -80,8 +73,8 @@ export const login = (email:string, password: string, rememberMe: boolean, captc
             if(response.data.resultCode === 10) {
                 dispatch(getCaptchaUrl())
             }
-            //let message = response.data.messages.length > 0 ? response.data.messages[0] : 'some ERROR'; 
-            //dispatch(stopSubmit('login', {_error: message}))    
+            let message = response.data.messages.length > 0 ? response.data.messages[0] : 'some ERROR'; 
+            dispatch(stopSubmit('login', {_error: message}))    
         }
 };
 export const getCaptchaUrl = () => async (dispatch: any) => {
