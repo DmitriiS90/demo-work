@@ -1,10 +1,19 @@
 import React, { useState } from 'react';
 import styles from './Paginator.module.css';
+import cn from 'classnames'
 
-let Paginator = ({totalUsersCount, currentPage, pageSize, onPageChanged, portionsSize=10, ...props}) => {
+type Props = {
+    totalUsersCount: number
+    currentPage: number 
+    pageSize: number 
+    onPageChanged: (pageNumber: number) => void 
+    portionsSize: number
+}
+
+const Paginator: React.FC<Props> = ({totalUsersCount, currentPage, pageSize, onPageChanged, portionsSize=10, ...props}) => {
     let pagesCount = Math.ceil(totalUsersCount / pageSize)
 
-    let pages = [];
+    let pages: Array<number> = [];
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i)
     }
@@ -15,7 +24,7 @@ let Paginator = ({totalUsersCount, currentPage, pageSize, onPageChanged, portion
     let rightPortionPageNunber = portionNumner * (portionsSize + 1);
 
     return (
-        <div className={styles.paginator}>
+        <div className={cn(styles.paginator)}>
             {portionNumner > 1 &&
                 <button onClick={() => { setPortionNumner(portionNumner - 1) }}>PREV</button>
             }
@@ -23,7 +32,7 @@ let Paginator = ({totalUsersCount, currentPage, pageSize, onPageChanged, portion
             {pages
                 .filter(p => p >= leftPortionPageNunber && p <= rightPortionPageNunber)
                 .map(p => {
-                    return <span className={({
+                    return <span className={cn({
                         [styles.selectPage]: currentPage === p
                     }, styles.pageNumber)}
                         key={p}
