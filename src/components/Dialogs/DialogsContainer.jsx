@@ -1,9 +1,10 @@
-import React from 'react';
-import { sendMessageCreator } from '../../redux/dialogs-reducer';
-import Dialogs from './Dialogs';
-import { connect } from 'react-redux'; 
-import { withAuthRedirect } from '../../hoc/withAuthRedirect';
-import { compose } from 'redux';
+import React from 'react'
+import Dialogs from './Dialogs'
+import { actions } from '../../redux/dialogs-reducer'
+import { connect } from 'react-redux';
+import { compose } from 'redux'
+import { withAuthRedirect } from '../../hoc/withAuthRedirect'
+;
 
 let mapStateToProps = (state) => { 
     return{
@@ -12,7 +13,7 @@ let mapStateToProps = (state) => {
 }
 let mapDispatchToProps = (dispatch) => {      
     return{
-        sendMessage: (newMessageBody) => {dispatch(sendMessageCreator(newMessageBody))},
+        sendMessage: (newMessageBody) => {dispatch(actions.sendMessageCreator(newMessageBody))},
     }
 }
 
@@ -21,4 +22,4 @@ let DialogsContainer = compose (
     withAuthRedirect  
 ) (Dialogs)
 
-export default DialogsContainer;
+export default DialogsContainer
