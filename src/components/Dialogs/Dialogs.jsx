@@ -1,26 +1,25 @@
-import React from 'react';
+import React from 'react'
 import styles from './Dialogs.module.css'
-import { Redirect } from 'react-router-dom';
-import DialogItem from './DialogItem/DialogItem';
-import MessageItem from './MessageItem/MessageItem';
-import { Field, reduxForm } from 'redux-form';
-import { Textarea } from '../common/FormsControl/FormsControl';
-import { maxLengthCreator, required } from '../../utils/validators/validator';
+import { Redirect } from 'react-router-dom'
+import DialogItem from './DialogItem/DialogItem'
+import MessageItem from './MessageItem/MessageItem'
+import { Field, reduxForm } from 'redux-form'
+import { Textarea } from '../common/FormsControl/FormsControl'
+import { maxLengthCreator, required } from '../../utils/validators/validator'
+
 
 const Dialogs = (props) => {
 
-    let state = props.dialogsPage;
+    let state = props.dialogsPage
 
-    let dialogsElements = state.dialogs.map( (d) => <DialogItem avatar={d.avatar} name={d.name} key={d.id} id={d.id}/>);
-    let messagesElements = state.messages.map( (m) => <MessageItem message={m.message} key={m.id}/>);
-
-    let newMessageBody = state.newMessageBody; 
+    let dialogsElements = state.dialogs.map( (d) => <DialogItem avatar={d.avatar} name={d.name} key={d.id} id={d.id}/>)
+    let messagesElements = state.messages.map( (m) => <MessageItem message={m.message} key={m.id}/>)
 
     let addNewMessage = (values) => {
         props.sendMessage(values.newMessageBody)
     }
 
-    if (props.isAuth == false) return <Redirect to={'/login'} />
+    if (!props.isAuth) return <Redirect to={'/login'} />
 
     return (
         <div className={styles.dialogs}>

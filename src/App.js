@@ -33,7 +33,7 @@ class App extends React.Component {
     }
     
     return (
-      <Layout>
+      <Layout className='app-project'>
         <HeaderContainer />
         <Content style={{ padding: '0 50px' }}>
           <Breadcrumb style={{ margin: '16px 0' }}>
@@ -76,7 +76,6 @@ class App extends React.Component {
             </Content>
           </Layout>
         </Content>
-        <Footer style={{ textAlign: 'center' }}>demo-project</Footer>
       </Layout>
     );
   }
