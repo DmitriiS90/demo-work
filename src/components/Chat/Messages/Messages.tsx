@@ -1,15 +1,21 @@
 import React, { useEffect, useState } from 'react';
+import { ChatMessageType } from '../../../types/types';
 
-const Messages = ({webSocketChannel}) => {
+const Messages: React.FC<{webSocketChannel: WebSocket | null}> = ({webSocketChannel}) => {
 
-    const [messages, setMessages] = useState([])
+    const [messages, setMessages] = useState<ChatMessageType[]>([])
 
     useEffect(()=>{
-        webSocketChannel.addEventListener('message', (e)=>{
+        const messageHandler = (e: MessageEvent) => {
             const newMessages = JSON.parse(e.data)
             setMessages((prevMessages)=>[...prevMessages, ...newMessages])
-        })
-    },[])
+        }
+        webSocketChannel?.addEventListener('message', messageHandler)
+        
+        return () => {
+            webSocketChannel?.removeEventListener('message', messageHandler)
+        }
+    },[webSocketChannel])
 
     return (
         <div style={{height:'500px', overflowY:'auto'}}>
@@ -18,7 +24,7 @@ const Messages = ({webSocketChannel}) => {
     )
 }
 
-const Message = ({message}) => {
+const Message: React.FC<{message: ChatMessageType}> = ({message}) => {
   
     return (
         <div>
